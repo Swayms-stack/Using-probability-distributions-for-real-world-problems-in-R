@@ -1,0 +1,25 @@
+library(ggplot2)
+# Comment multiple - Lines (“control + shift + C”)
+<!-- A binomial distribution can be thought of as simply the probability of  -->
+<!-- a SUCCESS or FAILURE outcome in an experiment or survey that is repeated multiple times.  -->
+The binomial is a type of distribution that has two possible outcomes'''
+# Q1. Find the probability of having exactly 4 correct answers by random 
+dbinom (x = 4, size = 10, prob = 0.25)  # probability = 1/4 
+# Q2. What is the probability of having four or less correct answers 
+# if a student attempts to answer every question at random?
+# pbinom is the R function that calculates the c. d. f. of the binomial distribution.
+pbinom(q = 4, size = 10, prob = 0.25)
+# Plot the binomial distribution of successfully answering the quesions
+# seq() function is used to create a sequence of elements in a Vector.
+k <- seq (0,10,1) # Integer seq where 0 to 10 is each correctly answered questions 
+# and 1 is for individual probability
+# probTable contains the no of correct answers (x-axis) and their probabilities (y-axis)
+probTable <- data.frame(answer = k, prob = dbinom (k, 10, 0.25))
+# Plot this DataFrame using ggplot
+ggplot(data = probTable, aes(x = answer, y = prob)) +
+  geom_bar(stat = "identity", fill = "green") +
+  scale_x_continuous(breaks = k) +
+  theme_bw()
+  
+  
+# If Q is to find exact probability, use binomial distribution.

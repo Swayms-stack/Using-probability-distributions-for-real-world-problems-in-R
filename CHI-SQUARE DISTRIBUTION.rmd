@@ -1,0 +1,28 @@
+# Chi-square statistic is a way to show the relationship between 2 categorical or character variables.
+# Chi-square statistic is a single number variable that tells how much difference exists between 
+# observed counts and the counts that can be expected if there were no relationship at all 
+# The distribution of the chi-square statistic is called the chi-square distribution.
+# On average, a battery lasts 50 minutes on a single charge. The standard deviation is 3 minutes.
+# Suppose the battery manufacturer runs a quality control test. They randomly select 9 batteries. 
+# The standard deviation of the selected batteries is 5 minutes. 
+# Q1. What would be the chi-square statistic represented by this test?
+# Here the 3 parameters are :
+# Degree of freedom (randomly sampled batteries - 1), observed sd (5 mins) & expected sd (3 mins)
+dof <- 8  # (9-1)
+chi <- (dof * 5^2) / 3^2 # chi sq eq = dof * square(observed sd) / square(expected sd)
+chi
+# A low value for chi square implies that is high correlation between the two sample sets 
+# Q2. Suppose they repeated the test with a new random sample of 9 batteries. 
+# What is the probability that the standard deviation in the new test would be greater than 5 minutes?
+# pchi sq (to find the cumulative prob of a chi sq dist) requires 
+# two parameters chi sq statistic value (chi) and degree of freedom (df.
+1 - pchisq (chi, df = dof)
+# The probability that the standard deviation in the new test would be greater than 5 minutes is 0.004520415.
+# Plot the distribution
+chi_square <- seq (1, 50, 1) #  Sequence values from 1 till 50 
+prob <- pchisq (chi_square, df = dof) # Cumulative probability for each of the chi - square values
+library(ggplot2)
+ggplot () + geom_point (aes (x = chi_square, y = prob)) + 
+  theme_light()
+# We can notice that the probability & the chi_square values primarily depend on the dof.
+# It means that changing the sample size will change the probability.

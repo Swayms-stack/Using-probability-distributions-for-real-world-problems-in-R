@@ -1,0 +1,22 @@
+# Normal Distribution is a function that represents the 
+# distribution of many random variables as a symmetrical bell-shaped graph.
+# It is the type of probability distribution that is symmetric around the mean value. 
+# It shows that points closer to the mean value are more likely to occur than points away from the mean value.
+# Eg : Heights, Blood Pressure & Several Other Natural Phenomena
+# The Iris dataset contains iris flower specifications. The column 
+# Sepal Width follows a normal distribution.
+# Q1. What is the percentage of flowers with Sepal Width 3cm or less?
+# The parameters are required to calculate the probability of a Normal distribution are :
+# Mean, Standard Deviation & Success Criteria
+meanIris <- mean (iris$Sepal.Width)
+sdIris <- sd (iris$Sepal.Width)
+pnorm (3, mean = meanIris, sd = sdIris)
+# Q2. What fraction of the flowers where Sepal Width lies between 3cm and 4cm?
+# Cumulative dist of the flowers with sepal width (4 cm - 3 cm)
+pnorm (4, mean = meanIris, sd = sdIris) - pnorm (3, mean = meanIris, sd = sdIris)
+# Visualization
+sepal_width <- seq (1, 5, 0.1)
+prob <- dnorm (sepal_width, mean =  meanIris, sd = sdIris)
+library(ggplot2)
+ggplot () + geom_point (aes (x = sepal_width, y = prob)) + 
+  theme_dark()

@@ -1,0 +1,22 @@
+# Poisson Distribution is the probabilty of a number of independent events which are likely to occur in a certain period of time
+# For eg : The amount of sales on certain days
+# If there are ten cars crossing a bridge per minute on average, find the probability of having seventeen or more cars crossing the bridge in a particular minute.
+# [Find the cumulative probabilty of 16 cars crossing the bridge]
+ppois (16, lambda = 10) # 16(Success Value) & 10 (Mean Value)
+# This gives the probabilty of 16 or fewer cars crossing the bridge
+# To find the probabilty of 17 or more cars, there are 2 methods
+# I. 1-ppois
+1-ppois (16, lambda = 10)
+# II. 
+ppois (16, lambda = 10, lower = FALSE)
+# PLOT A DISTRIBUTION FOR NO OF CARS CROSSING THE BRIDGE IN A MIN
+# seq of no of cars crossing the bridge and then individual probabilty for each car
+cars <- seq (10,20,1)
+prob <- dpois (cars, lambda = 10)
+prob
+# Plot this DataFrame using ggplot
+ggplot() + geom_step(aes(x = cars, y = prob)) +
+  scale_x_continuous(breaks = cars) +
+  theme_light()
+
+# If Q is to find avg probability, use poisson distribution

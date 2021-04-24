@@ -1,0 +1,26 @@
+# Exponential Distribution is used to model the time elapse between events
+# In probability theory and statistics, the exponential distribution is the probability distribution of the time between events in a 
+# Poisson point process, i.e., a process in which events occur continuously and independently at a constant average rate.
+# Eg : How much time will elapse b4 an earthquake occurs ?
+# Eg : How long will a car work b4 it breaks down ?
+# Q1. Suppose the mean arrival time of a customer at a supermarket cashier is four minutes.
+# Find the probability of a customers arriving at the cashier in less than three minutes.
+# Weight of customers arriving in a min = 1/4 = 0.25  (1/mean arrival time)
+# pexp function requires 2 parameters : Success Criteria & Weight
+pexp (3, 0.25)
+# OR
+pexp (3, rate = 1/4)
+# Q2. The number of days ahead travelers buy their flight tickets follows an 
+# exponential distribution with the average number of days = 15. 
+# Find the probability that a traveler will purchase a ticket more than 10 days in advance.
+# 10 days or less
+pexp (10, rate = 1/15)
+# 10 days or more 
+1- pexp (10, rate = 1/15)
+# Plot the distribution
+days <- seq (1, 100, 1) # 100 days & individual probability 
+prob <- pexp (days, rate = 1/15)
+library(ggplot2)
+ggplot () + geom_point (aes (x = days, y = prob)) + 
+  theme_light()
+# The plot shows that the travellers tend to buy their ticket well in advance.
